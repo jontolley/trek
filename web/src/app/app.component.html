@@ -1,0 +1,39 @@
+<div id="shell">
+  <div class="container error-message" *ngIf="errorObj">
+    <div class="row">
+      <div class="col-md-12">
+        <trek-error-message [error]="errorObj"></trek-error-message>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-md navbar-light fixed-top trek-bg-light">
+    <a class="navbar-brand" [routerLink]="['']"> <img [src]="logo" /> Trek 2019</a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-label="Toggle navigation">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <div
+      class="collapse navbar-collapse ml-3 ml-md-5"
+      id="navbarSupportedContent"
+      [ngbCollapse]="isCollapsed"
+    >
+      <ul class="navbar-nav mr-auto">
+        <li
+          *ngFor="let item of navigationLinks"
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" [routerLink]="[item.link]">{{ item.label }}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="content" [@routerTransition]="getState(o)">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+
+  <trek-footer></trek-footer>
+</div>

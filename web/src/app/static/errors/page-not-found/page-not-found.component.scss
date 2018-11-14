@@ -1,0 +1,43 @@
+@import "../../../../styles-variables";
+
+.container {
+  margin-top: $container-top-margin;
+  margin-bottom: $container-bottom-margin;
+}
+
+h1 {
+  font-size: 12em;
+  line-height: 1.5em;
+}
+
+h3 {
+  font-size: 2em;
+  line-height: 1.5em;
+}
+
+.info {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+@include media-breakpoint-up(md) {
+  .container {
+    margin-top: $container-top-margin-desktop;
+    margin-bottom: $container-bottom-margin-desktop;
+  }
+
+  h1 {
+    font-size: 18em;
+    line-height: 1.2em;
+  }
+
+  h3 {
+    font-size: 3em;
+    line-height: 1.5em;
+  }
+
+  .info {
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+}

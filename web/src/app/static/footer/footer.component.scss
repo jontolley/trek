@@ -1,0 +1,76 @@
+@import '../../../styles-variables';
+
+:host {
+  flex: 0 0 auto;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  background-color: $footer-color;
+  background-color: rgba($footer-color, 0.9);
+  color: $footer-font-color;
+
+  border-bottom: 3px solid $tertiary-color;
+
+  text-align: center;
+  z-index: 1;
+
+  .row {
+    padding: 10px 0;
+
+    &.signature {
+      height: 60px;
+    }
+
+    .links {
+      a {
+        transition: padding 0.5s;
+        display: inline-block;
+        padding: 20px 5px;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        span {
+          display: inline-block;
+          width: 70px;
+          padding: 0 0 0 5px;
+          overflow: hidden;
+          text-align: left;
+          white-space: nowrap;
+          transition: width 0.5s;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  :host {
+    .row {
+      .links {
+        a {
+          padding: 20px;
+
+          span {
+            width: 0;
+            padding: 0;
+          }
+        }
+      }
+
+      &.signature {
+        position: relative;
+        height: 60px;
+
+        a {
+          position: absolute;
+          right: 15px;
+        }
+      }
+    }
+  }
+}

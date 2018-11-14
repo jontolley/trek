@@ -1,0 +1,40 @@
+@import '~bootstrap/scss/bootstrap';
+
+$trek-blue: #005596;
+$trek-light-blue: #00add9;
+$trek-green: #62a744;
+$trek-light-green: #a3cf62;
+
+$trek-light-gray: #e4e4e4;
+
+$light-font-color: #eeeeee;
+
+$primary-color: #eeeeee;
+$primary-font-color: rgba(41, 40, 40, 0.932);
+
+$secondary-color: $trek-blue;
+$secondary-font-color: $light-font-color;
+
+$tertiary-color: $trek-green;
+$tertiary-font-color: $light-font-color;
+
+$nav-color: $secondary-color;
+$nav-font-color: rgb(221, 219, 221);
+$nav-font-active-color: $trek-green;
+
+$footer-color: #434343;
+$footer-font-color: rgb(221, 219, 221);
+
+$container-top-margin: 20px;
+$container-top-margin-desktop: 50px;
+
+$container-bottom-margin: 100px;
+$container-bottom-margin-desktop: 150px;
+
+$montserrat: 'Montserrat', sans-serif;
+$roboto: 'Roboto', sans-serif;
+
+$light-font: 300;
+$normal-font: 400;
+
+$shortcut-sqare-size: 3.4em;

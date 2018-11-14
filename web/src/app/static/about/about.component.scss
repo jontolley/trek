@@ -1,0 +1,46 @@
+@import '../../../styles-variables';
+@import '../../../trek-styles';
+
+.hero {
+  text-align: center;
+  background-color: $trek-light-gray;
+
+  background-image: url('/assets/hero-shapes.svg');
+  background-size: contain;
+  background-position: right center;
+  background-repeat: no-repeat;
+
+  .hero-body {
+    margin-bottom: 50px;
+
+    .title {
+      font-size: 2.5em;
+      font-family: $montserrat;
+      font-weight: $light-font;
+      margin-bottom: 30px;
+      color: $secondary-color;
+    }
+
+    .subtitle {
+      font-size: 1.3em;
+      font-family: $montserrat;
+      font-weight: $light-font;
+    }
+  }
+}
+
+.container {
+  margin-top: $container-top-margin;
+  margin-bottom: $container-bottom-margin;
+}
+
+@include media-breakpoint-up(md) {
+  .container {
+    margin-top: $container-top-margin-desktop;
+    margin-bottom: $container-bottom-margin-desktop;
+
+    .info {
+      margin-bottom: $container-top-margin-desktop;
+    }
+  }
+}

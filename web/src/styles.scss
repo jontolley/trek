@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+$fa-font-path: "~font-awesome/fonts";
+
+@import "~font-awesome/scss/font-awesome";
+
+@import "styles-variables";
+
+
+body {
+  background-color: $primary-color;
+  color: $primary-font-color;
+  font-family: $roboto;
+  font-weight: $normal-font;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}

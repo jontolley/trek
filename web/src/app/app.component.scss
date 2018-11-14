@@ -1,0 +1,71 @@
+@import '../styles-variables';
+
+:host {
+  height: 100%;
+
+  #content {
+    padding-top: 70px;
+  }
+}
+
+#shell {
+  height: 100%;
+
+  .error-message {
+    margin-top: 100px;
+  }
+
+  .navbar {
+    border-top: 3px solid $trek-green;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+      0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  nav.trek-bg-light {
+    background-color: $nav-color;
+    background-color: rgba($nav-color, 0.9);
+
+    &.navbar-light {
+      .navbar-brand {
+        color: $nav-font-color;
+        font-size: 1.6em;
+
+        img {
+          width: 40px;
+        }
+      }
+
+      .navbar-toggler {
+        color: $nav-font-color;
+        border-color: $nav-font-color;
+        outline: none;
+        font-size: 1.75em;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .navbar-nav {
+        .nav-item {
+          &:not(.active) {
+            .nav-link {
+              color: $nav-font-color;
+
+              &:hover {
+                color: $nav-font-active-color;
+              }
+            }
+          }
+
+          &.active {
+            .nav-link {
+              color: $nav-font-active-color;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
