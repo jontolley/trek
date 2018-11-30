@@ -8,7 +8,6 @@ import { SharedModule } from '@app/shared';
 import { StaticModule } from '@app/static';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { ClothingComponent } from './pages/clothing/clothing.component';
 import { PackingComponent } from './pages/packing/packing.component';
@@ -18,7 +17,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FavoritesComponent,
     RegistrationComponent,
     ClothingComponent,
     PackingComponent,

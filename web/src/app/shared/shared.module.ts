@@ -7,8 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import {
   ErrorMessageComponent,
-  LoadingComponent,
-  ShortcutSquareComponent
+  LoadingComponent
 } from '@app/shared/components';
 
 @NgModule({
@@ -22,8 +21,7 @@ import {
   ],
   declarations: [
     ErrorMessageComponent,
-    LoadingComponent,
-    ShortcutSquareComponent
+    LoadingComponent
   ],
   exports: [
     RouterModule,
@@ -32,8 +30,7 @@ import {
     HttpClientModule,
     BrowserAnimationsModule,
     ErrorMessageComponent,
-    LoadingComponent,
-    ShortcutSquareComponent
+    LoadingComponent
   ]
 })
 export class SharedModule {}

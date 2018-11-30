@@ -1,3 +1,32 @@
-<p>
-  packing works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="title">Packing List</h3>
+      <p class="subtitle">
+        Each trekker is allowed to put 15 to 17 lbs. of personal items on the handcart.  With the exception of your sleeping bag, everything listed below needs to fit inside your 5 gallon bucket.  Pack carefully!
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h4>General Items</h4>
+      <ul>
+        <li *ngFor="let item of generalItems">{{item.name}}</li>
+      </ul>
+    </div>
+    
+    <div class="col-12">
+        <h4>Personal Items</h4>
+        <ul>
+          <li *ngFor="let item of personalItems">{{item.name}}</li>
+        </ul>
+      </div>
+      
+    <div class="col-12">
+        <h4>Prohibited Items</h4>
+        <ul>
+          <li *ngFor="let item of prohibitedItems">{{item.name}}</li>
+        </ul>
+      </div>
+  </div>
+</div>

@@ -16,7 +16,11 @@ export class AppComponent implements OnInit {
   errorObj: TrekError;
 
   navigationLinks = [
-    { link: '/', label: 'Home' },
+    { link: 'packing', label: 'Packing List' },
+    { link: 'cothing', label: 'Pioneer Clothing' },
+    { link: 'faq', label: 'FAQ' },
+    { link: 'registration', label: 'Registration' },
+    { link: 'contact', label: 'Contact' },
     { link: 'about', label: 'About' }
   ];
 

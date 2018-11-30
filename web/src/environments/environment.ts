@@ -9,7 +9,7 @@ export const environment = {
   appName: 'Trek 2019',
   envName: 'DEV',
   production: false,
-  apiUrl: 'http://localhost:53836',
+  apiUrl: 'https://localhost:44330',
   versions: {
     app: packageJson.version,
     angular: packageJson.dependencies['@angular/core'],
