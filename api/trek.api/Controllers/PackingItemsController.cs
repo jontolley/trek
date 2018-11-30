@@ -7,20 +7,20 @@ namespace trek.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FaqsController : ControllerBase
+    public class PackingItemsController : ControllerBase
     {
         private ITrekDataRepository _trekDataRepository;
 
-        public FaqsController(ITrekDataRepository trekDataRepository)
+        public PackingItemsController(ITrekDataRepository trekDataRepository)
         {
             _trekDataRepository = trekDataRepository;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Faq>> Get()
+        public ActionResult<IEnumerable<PackingItem>> Get()
         {
-            var faqs = _trekDataRepository.GetFaqs();
-            return Ok(faqs);
+            var packingItems = _trekDataRepository.GetPackingItems();
+            return Ok(packingItems);
         }
     }
 }
