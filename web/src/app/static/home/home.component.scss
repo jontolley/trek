@@ -3,15 +3,13 @@
 
 .hero {
   text-align: center;
-  background-color: $trek-light-gray;
-
-  background-image: url('/assets/hero-shapes.svg');
-  background-size: contain;
-  background-position: right center;
-  background-repeat: no-repeat;
+  margin-top: -65px;
 
   .hero-body {
-    margin-bottom: 50px;
+    margin-bottom: 100px;
+    background-color: rgb(211,211,211);
+    background-color: rgba(211,211,211,0.8);
+    padding: 30px;
 
     .title {
       font-size: 2.5em;
@@ -31,7 +29,11 @@
 
 .container {
   margin-top: $container-top-margin;
-  margin-bottom: $container-bottom-margin;
+  margin-bottom: $container-bottom-margin;  
+}
+
+.hero-body {
+  margin-top: 100px;
 }
 
 @include media-breakpoint-up(md) {
@@ -42,5 +44,12 @@
     .info {
       margin-bottom: $container-top-margin-desktop;
     }
+  }
+  
+  .hero-body {
+    background-color: rgb(211,211,211);
+    background-color: rgba(211,211,211,0.8);
+    padding: 30px;
+    margin-top: 120px;
   }
 }
