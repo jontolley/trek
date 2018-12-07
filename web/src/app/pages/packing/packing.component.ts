@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '@app/core';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
+
 import { TrekPackingItem } from '@app/shared';
 
 @Component({
@@ -13,17 +15,15 @@ export class PackingComponent implements OnInit {
   personalItems: TrekPackingItem[] = [];
   prohibitedItems: TrekPackingItem[] = [];
 
-  constructor(private dataService: DataService) { }
-
-  ngOnInit() {
-    this.dataService.getPackingItems().subscribe(
-      data => {
-        this.splitItemList(data);
-      }
-    );
+  constructor(
+    private route: ActivatedRoute) {
+    this.route.data.pipe(take(1))
+      .subscribe(data => this.splitItemList(data.packingItems));
   }
 
-  private splitItemList(itemList: TrekPackingItem[]) {
+  ngOnInit() {}
+
+  private splitItemList(itemList: Array<TrekPackingItem>) {
     itemList.forEach(item => {
       switch(item.neededBy) { 
         case 'all': { 
