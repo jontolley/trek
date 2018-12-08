@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { TrekPackingItem, TrekFaq } from '@app/shared';
+import { TrekPackingItem, TrekFaq, TrekContact } from '@app/shared';
 import { environment as env } from '@env/environment';
 import { ErrorService } from '@app/core/services/error.service';
 
@@ -27,6 +27,16 @@ export class DataService {
     const uri = `${this.baseUrl}/api/faqs`;
     return this.httpClient
       .get<Array<TrekFaq>>(uri)
+      .pipe(
+        catchError(this.errorService.handleHttpError)
+      );
+  }
+
+  public sendContactRequest(contact: TrekContact) : Observable<TrekContact> {
+    const uri = `${this.baseUrl}/api/contacts`;
+    
+    return this.httpClient
+      .post<TrekContact>(uri, contact)
       .pipe(
         catchError(this.errorService.handleHttpError)
       );

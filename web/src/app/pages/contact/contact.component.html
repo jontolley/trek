@@ -1,3 +1,99 @@
-<p>
-  contact works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 page-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-header-title">Contact Trek Committee</div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<div class="container" [hidden]="submitted">
+  <div class="row">
+    <div class="col-12">
+      <p class="page-info">
+        Complete this form to contact the Trek Committee.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 contact">
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+        <div class="form-row">
+          <div class="form-group col-md-6" [class.form-error]="name.invalid && (name.dirty || submitFailed)">
+            <label for="inputName">Name</label>
+            <label [class.error-message]="name.hasError('required')" class="required">required</label>
+            <input type="text" class="form-control" id="inputName" [(ngModel)]="model.name" name="name" #name="ngModel"
+              required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6"
+            [class.form-error]="(email.hasError('required') && (email.dirty || submitFailed)) || (email.hasError('email') && submitFailed)">
+            <label for="inputEmail">Email</label>
+            <label [class.error-message]="email.hasError('required')" class="required">required</label>
+            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="model.email" name="email" #email="ngModel" required email>
+            <div *ngIf="(email.hasError('email') && !email.hasError('required')) && submitFailed" [class.error-message]="email.hasError('email')">
+              <small class="text-uppercase">Please enter a valid email address</small></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6" [class.form-error]="ward.invalid && (ward.dirty || submitFailed)">
+            <label for="inputWard">Ward</label>
+            <input type="text" class="form-control" id="inputWard" [(ngModel)]="model.ward" name="ward" #ward="ngModel">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12" [class.form-error]="message.invalid && (message.dirty || submitFailed)">
+            <label for="inputMessage">Message</label>
+            <label [class.error-message]="message.hasError('required')" class="required">required</label>
+            <textarea type="text" class="form-control" id="inputMessage" required [(ngModel)]="model.message" name="message" #message="ngModel"
+              rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="my-3">
+          <button type="submit" class="btn btn-success" [hidden]="submiting">Send Message</button>
+          <button type="button" class="btn btn-success" [hidden]="!submiting"><img class="sending-icon" src="assets\ripple.svg"> Sending...</button>
+          <button type="reset" class="btn btn-primary ml-3" [disabled]="contactForm.pristine" (click)="reset()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container" [hidden]="!submitted">
+  <div class="row">
+    <div class="col-12">
+      <p class="page-info">
+        The following message has been sent to the committee.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 contact-display">
+      <div class="row mt-3">
+        <label class="col-3">Name</label>
+        <div class="col-9 pull-left">{{ model.name }}</div>
+      </div>
+      <div class="row">
+        <label class="col-3">Email</label>
+        <div class="col-9 pull-left">{{ model.email }}</div>
+      </div>
+      <div class="row" [hidden]="!model.ward">
+        <label class="col-3">Ward</label>
+        <div class="col-9 pull-left">{{ model.ward}}</div>
+      </div>
+      <div class="row">
+        <label class="col-3">Message</label>
+        <div class="col-9 pull-left">{{ model.message }}</div>
+      </div>
+      <div class="my-3">
+        <button type="reset" class="btn btn-primary" (click)="reset()">Send Another</button>
+      </div>
+    </div>
+  </div>
+</div>
