@@ -1,0 +1,105 @@
+@import '../../../styles-variables';
+@import '../../../trek-styles';
+
+.page-header {
+  background-image: url('/assets/kimball-warren.jpg');
+  background-size: cover;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  height: 150px;
+
+  .container {
+    margin-top: 30px;
+  }
+
+  .page-header-title {
+    font-size: 2em;
+    padding: 10px 20px;
+    background-color: rgb(211,211,211);
+    background-color: rgba(211,211,211,0.8);
+    font-family: $montserrat;
+    font-weight: $normal-font;
+    color: $secondary-color;
+  }
+}
+
+.container {
+  margin-top: $container-top-margin;
+  margin-bottom: $container-bottom-margin;
+
+  .page-info {
+    background-color: lightgray;
+    padding: 20px 40px;
+    border-left: 5px solid darkgreen;
+    font-style: italic;
+    margin-bottom: 30px;
+  }
+}
+
+
+.faq-list {
+  .faq-group {
+    border-bottom: 1px solid #666666;
+
+    .faq-question {
+      margin-bottom: 0;
+
+      cursor: pointer;
+      padding: 8px;
+
+      .fa-plus-circle {
+        display: inline;
+      }
+
+      .fa-minus-circle {
+          display: none;
+      }
+
+      &:hover {
+        background-color: #cccccc;
+        color: $secondary-color;
+      }
+
+      &.open {
+        background-color: #cfcfcf;
+        color: $secondary-color;
+
+        .fa-minus-circle {
+            display: inline;
+        }
+        .fa-plus-circle {
+            display: none;
+        }
+      }
+    }
+
+    .faq-answer {
+      padding-left: 35px;
+      
+      /* css animation */
+      overflow: hidden;
+      padding: 0 1em;
+      max-height: 0;
+      opacity: 0;
+  
+      /* add browser prefixes */
+      transition: all 0.3s ease;    
+
+      &.open {
+        max-height: 500px;
+        opacity: 1;
+        padding: 15px 20px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .container {
+    margin-top: $container-top-margin-desktop;
+    margin-bottom: $container-bottom-margin-desktop;
+
+    .info {
+      margin-bottom: $container-top-margin-desktop;
+    }
+  }
+}

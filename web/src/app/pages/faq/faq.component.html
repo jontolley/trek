@@ -1,3 +1,38 @@
-<p>
-  faq works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 page-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-header-title">Frequently Asked Questions</div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p class="page-info">
+        Here is a list of common questions that you may find helpful in planning for Trek.  If you have a question to which you can't find an answer you can send it to the Trek Committee through the <a [routerLink]="['/contact']">Contact Page</a>.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="faq-list">
+
+        <div *ngFor="let faqItem of faqList" id="{{faqItem.key}}" class="faq-group">
+          <h3 class="faq-question" (click)="onQuestionClicked(faqItem)" [class.open]="selectedQuestion===faqItem.key">
+            <i class="fa fa-plus-circle"></i>
+            <i class="fa fa-minus-circle"></i> {{faqItem.question}}</h3>
+          <div [class.open]="selectedQuestion===faqItem.key" class="faq-answer">
+            <p>{{faqItem.answer}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

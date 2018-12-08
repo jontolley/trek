@@ -8,7 +8,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { PackingComponent } from './pages/packing/packing.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
-import { PackingResolver } from '@app/core';
+import { PackingResolver, FaqResolver } from '@app/core';
 
 const routes: Routes = [
   {
@@ -37,6 +37,9 @@ const routes: Routes = [
   {
     path: 'faq',
     component: FaqComponent,
+    resolve: {
+      faqItems: FaqResolver
+    },
     data: { title: 'FAQ', state: 'faq' }
   },
   {
