@@ -6,11 +6,19 @@ namespace trek.api.Models.Entities
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string NeededBy { get; set; }
+
+        [Required]
+        public bool IsRequired { get; set; }
+
+        [Required]
+        public int SortOrder { get; set; }
     }
 }

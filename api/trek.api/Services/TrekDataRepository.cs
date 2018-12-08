@@ -18,12 +18,12 @@ namespace trek.api.Services
 
         public IEnumerable<Faq> GetFaqs()
         {
-            return _context.Faqs;
+            return _context.Faqs.OrderBy(f => f.SortOrder);
         }
 
         public IEnumerable<PackingItem> GetPackingItems()
         {
-            return _context.PackingItems;
+            return _context.PackingItems.OrderBy(p => p.SortOrder);
         }
 
         public Contact GetContacts(int id)
@@ -33,7 +33,7 @@ namespace trek.api.Services
 
         public IEnumerable<Contact> GetContacts()
         {
-            return _context.Contacts;
+            return _context.Contacts.OrderBy(c => c.ReceivedDateTime);
         }
 
         public async Task<Contact> AddContacts(Contact contact)
