@@ -4,7 +4,7 @@ export const environment = {
   appName: 'Trek 2019',
   envName: 'PROD',
   production: true,
-  apiUrl: 'https://trek-api.kh.org',
+  apiUrl: 'https://trek-api.azurewebsites.net',
   versions: {
     app: packageJson.version,
     angular: packageJson.dependencies['@angular/core'],

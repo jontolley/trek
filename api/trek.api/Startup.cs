@@ -21,7 +21,7 @@ namespace trek.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var allowedOrigins = @"http://trek.local:4200".Split(',');
+            var allowedOrigins = @"http://trek.local:4200,https://spokaneeasttrek.org,https://trek.azurewebsites.net".Split(',');
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
