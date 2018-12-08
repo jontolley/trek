@@ -26,12 +26,19 @@
   margin-top: $container-top-margin;
   margin-bottom: $container-bottom-margin;
 
+  .print-btn {
+    border-radius: 0;
+    box-shadow: none;
+    height: 30px;
+    line-height: 0.5em;
+    margin-bottom: 10px;
+  }
+
   .page-info {
     background-color: lightgray;
     padding: 20px 40px;
     border-left: 5px solid darkgreen;
     font-style: italic;
-    margin-bottom: 30px;
   }
 }
 
@@ -43,5 +50,31 @@
     .info {
       margin-bottom: $container-top-margin-desktop;
     }
+  }
+}
+
+@media print {
+  .page-header {
+    height: 20px;
+  
+    .container {
+      margin-top: 0;
+    }
+  
+    .page-header-title {
+      font-size: 2em;      
+      font-family: $montserrat;
+      font-weight: $normal-font;
+      color: $secondary-color;
+    }
+  }
+
+  .container {
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+
+  .print-btn {
+    display: none;
   }
 }
