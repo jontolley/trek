@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
 import { FooterComponent } from './footer/footer.component';
-import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -12,7 +11,7 @@ import { HomeComponent } from './home/home.component';
     CommonModule,
     SharedModule
   ],
-  declarations: [PageNotFoundComponent, FooterComponent, AboutComponent, HomeComponent],
+  declarations: [PageNotFoundComponent, FooterComponent, HomeComponent],
   exports: [
     FooterComponent
   ]

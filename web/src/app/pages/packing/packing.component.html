@@ -27,12 +27,19 @@
       </ul>
     </div>
     
-    <div class="col-12">
-        <h4>Personal Items</h4>
-        <ul>
-          <li *ngFor="let item of personalItems">{{item.name}}</li>
-        </ul>
-      </div>
+    <div class="col-12 col-md-6">
+      <h4>Boys Items</h4>
+      <ul>
+        <li *ngFor="let item of boysItems">{{item.name}}</li>
+      </ul>
+    </div>
+    
+    <div class="col-12 col-md-6">
+      <h4>Girls Items</h4>
+      <ul>
+        <li *ngFor="let item of girlsItems">{{item.name}}</li>
+      </ul>
+    </div>
       
     <div class="col-12">
         <h4>Prohibited Items</h4>

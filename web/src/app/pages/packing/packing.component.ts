@@ -10,9 +10,9 @@ import { TrekPackingItem } from '@app/shared';
   styleUrls: ['./packing.component.scss']
 })
 export class PackingComponent implements OnInit {
-
   generalItems: TrekPackingItem[] = [];  
-  personalItems: TrekPackingItem[] = [];
+  boysItems: TrekPackingItem[] = [];
+  girlsItems: TrekPackingItem[] = [];
   prohibitedItems: TrekPackingItem[] = [];
 
   constructor(
@@ -30,8 +30,12 @@ export class PackingComponent implements OnInit {
            this.generalItems.push(item);
            break; 
         }
-        case 'personal': { 
-          this.personalItems.push(item);
+        case 'boys': { 
+          this.boysItems.push(item);
+           break; 
+        }
+        case 'girls': { 
+          this.girlsItems.push(item);
            break; 
         }
         case 'none': { 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PageNotFoundComponent } from '@app/static/errors/page-not-found/page-not-found.component';
-import { HomeComponent, AboutComponent } from './static';
+import { HomeComponent } from './static';
 import { ClothingComponent } from './pages/clothing/clothing.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { FaqComponent } from './pages/faq/faq.component';
@@ -14,12 +14,12 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    data: { title: 'Home', state: 'home' }
+    data: { state: 'home' }
   },
   {
     path: 'home',
     component: HomeComponent,
-    data: { title: 'Home', state: 'home' }
+    data: { state: 'home' }
   },
   {
     path: 'packing',
@@ -48,11 +48,6 @@ const routes: Routes = [
     path: 'contact',
     component: ContactComponent,
     data: { title: 'Contact Us', state: 'contact' }
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
-    data: { title: 'About', state: 'about' }
   },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent }

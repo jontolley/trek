@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
-import { routerTransition, ErrorService, BackgroundService } from '@app/core';
+
+import { routerTransition, ErrorService, BackgroundService, RoutingService } from '@app/core';
 import { TrekError } from '@app/shared';
 
 @Component({
@@ -18,27 +18,14 @@ export class AppComponent implements OnInit {
 
   errorObj: TrekError;
 
-  navigationLinks = [
-    { link: 'packing', label: 'Packing List' },
-    { link: 'cothing', label: 'Pioneer Clothing' },
-    { link: 'faq', label: 'FAQ' },
-    { link: 'registration', label: 'Registration' },
-    { link: 'contact', label: 'Contact' },
-    { link: 'about', label: 'About' }
-  ];
+  navigationLinks = this.routing.navigationLinks;
 
   public constructor(
     private errorService: ErrorService,
-    private router: Router,
+    private routing: RoutingService,
     private backgroundService: BackgroundService) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.isCollapsed = true;
-        this.backgroundService.pioneerBackground = false;
-        errorService.clearError();
-      }
-    });
-  }
+      this.routing.navCollapse.subscribe((value) => this.isCollapsed = value);
+    }
 
   isPioneerBackgroundOn() {
     return this.backgroundService.pioneerBackground;

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DataService, ErrorService, BackgroundService, PackingResolver } from './services';
+import { DataService, ErrorService, BackgroundService, PackingResolver, RoutingService } from './services';
 import { StarterRouteGuard } from './security/starter-route.guard';
 
 @NgModule({
@@ -12,7 +12,8 @@ import { StarterRouteGuard } from './security/starter-route.guard';
     ErrorService,
     DataService,
     BackgroundService,
-    PackingResolver
+    PackingResolver,
+    RoutingService
   ]
 })
 export class CoreModule {}

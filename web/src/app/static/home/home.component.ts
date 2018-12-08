@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-
-import { environment as env } from '@env/environment';
-import { BackgroundService } from '@app/core';
 
 @Component({
   selector: 'trek-home',
@@ -10,15 +6,8 @@ import { BackgroundService } from '@app/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  appTitle = env.appName;
 
-  constructor(
-    private titleService: Title,
-    private backgroundService: BackgroundService) {
-      this.backgroundService.pioneerBackground = true;
-    }
+  constructor() {}
 
-  ngOnInit() {
-    this.titleService.setTitle(`${this.appTitle}`);
-  }
+  ngOnInit() {}
 }
