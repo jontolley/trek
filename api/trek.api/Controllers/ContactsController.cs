@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using trek.api.Models.Entities;
 using trek.api.Services;
+using trek.api.Services.Email;
 
 namespace trek.api.Controllers
 {
@@ -11,10 +12,12 @@ namespace trek.api.Controllers
     public class ContactsController : ControllerBase
     {
         private ITrekDataRepository _trekDataRepository;
+        private IEmailService _emailService;
 
-        public ContactsController(ITrekDataRepository trekDataRepository)
+        public ContactsController(ITrekDataRepository trekDataRepository, IEmailService emailService)
         {
             _trekDataRepository = trekDataRepository;
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -50,6 +53,10 @@ namespace trek.api.Controllers
             }
 
             await _trekDataRepository.AddContacts(contact);
+
+            var email = await _emailService.GenerateEmailMessageAsync(contact);
+
+            await _emailService.SendMessage(email);
 
             return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
         }
