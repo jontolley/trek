@@ -6,7 +6,7 @@
   margin-top: -65px;
 
   .hero-body {
-    margin-bottom: 100px;
+    // margin-bottom: 100px;
     background-color: rgb(211,211,211);
     background-color: rgba(211,211,211,0.8);
     padding: 30px;
@@ -32,7 +32,25 @@
 
 .container {
   margin-top: $container-top-margin;
-  margin-bottom: $container-bottom-margin;  
+  margin-bottom: 0;
+
+  &.trail-boss {
+    margin-top: 30px;
+
+    .trail-boss-welcome {
+      text-align: left;
+      margin-bottom: 100px;
+      background-color: rgb(211,211,211);
+      background-color: rgba(211,211,211,0.8);
+      padding: 30px;
+
+      img {
+        width: 250px;
+        float: left;
+        margin: 0 40px 20px 0;
+      }
+    }
+  }
 }
 
 .hero-body {
@@ -42,7 +60,7 @@
 @include media-breakpoint-up(md) {
   .container {
     margin-top: $container-top-margin-desktop;
-    margin-bottom: $container-bottom-margin-desktop;
+    margin-bottom: 0;
 
     .info {
       margin-bottom: $container-top-margin-desktop;
