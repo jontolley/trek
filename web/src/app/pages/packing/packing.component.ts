@@ -10,7 +10,8 @@ import { TrekPackingItem } from '@app/shared';
   styleUrls: ['./packing.component.scss']
 })
 export class PackingComponent implements OnInit {
-  generalItems: TrekPackingItem[] = [];  
+  largetItems: TrekPackingItem[] = [];
+  generalItems: TrekPackingItem[] = [];
   boysItems: TrekPackingItem[] = [];
   girlsItems: TrekPackingItem[] = [];
   prohibitedItems: TrekPackingItem[] = [];
@@ -25,7 +26,11 @@ export class PackingComponent implements OnInit {
 
   private splitItemList(itemList: Array<TrekPackingItem>) {
     itemList.forEach(item => {
-      switch(item.neededBy) { 
+      switch(item.neededBy) {        
+        case 'large': { 
+          this.largetItems.push(item);
+          break;
+       }
         case 'all': { 
            this.generalItems.push(item);
            break; 
