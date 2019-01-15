@@ -20,7 +20,7 @@ export class RoutingService {
     { link: 'packing', label: 'Packing List' },
     { link: 'cothing', label: 'Pioneer Clothing' },
     { link: 'faq', label: 'FAQ' },
-    // { link: 'registration', label: 'Registration' },
+    { link: 'registration', label: 'Registration' },
     { link: 'contact', label: 'Contact' }
   ];
 

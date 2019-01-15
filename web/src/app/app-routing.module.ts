@@ -7,7 +7,6 @@ import { ClothingComponent } from './pages/clothing/clothing.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { PackingComponent } from './pages/packing/packing.component';
-import { RegistrationComponent } from './pages/registration/registration.component';
 import { PackingResolver, FaqResolver } from '@app/core';
 
 const routes: Routes = [
@@ -43,14 +42,14 @@ const routes: Routes = [
     data: { title: 'FAQ', state: 'faq' }
   },
   {
-    path: 'registration',
-    component: RegistrationComponent,
-    data: { title: 'Registration', state: 'registration' }
-  },
-  {
     path: 'contact',
     component: ContactComponent,
     data: { title: 'Contact Us', state: 'contact' }
+  },
+  {
+    path: 'registration',
+    loadChildren: './registration/registration.module#RegistrationModule',
+    data: { title: 'Registration', state: 'registration' }
   },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent }

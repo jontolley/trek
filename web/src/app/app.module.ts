@@ -9,7 +9,6 @@ import { SharedModule } from '@app/shared';
 import { StaticModule } from '@app/static';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './pages/registration/registration.component';
 import { ClothingComponent } from './pages/clothing/clothing.component';
 import { PackingComponent } from './pages/packing/packing.component';
 import { FaqComponent } from './pages/faq/faq.component';
@@ -18,7 +17,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
     ClothingComponent,
     PackingComponent,
     FaqComponent,
