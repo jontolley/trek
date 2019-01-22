@@ -7,14 +7,18 @@
 
   .hero-body {
     // margin-bottom: 100px;
-    background-color: rgb(211,211,211);
-    background-color: rgba(211,211,211,0.9);
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.7);
     padding: 30px;
 
     .title {
       font-family: $montserrat;
       font-weight: $light-font;
       color: $secondary-color;
+
+      h1 {
+        font-weight: 600;
+      }
 
       h2 {
         font-size: 1.5em;
@@ -40,8 +44,8 @@
     .trail-boss-welcome {
       text-align: left;
       margin-bottom: 100px;
-      background-color: rgb(211,211,211);
-      background-color: rgba(211,211,211,0.9);
+      background-color: rgb(255,255,255);
+      background-color: rgba(255,255,255,0.7);
       padding: 30px;
 
       img {
@@ -68,8 +72,8 @@
   }
   
   .hero-body {
-    background-color: rgb(211,211,211);
-    background-color: rgba(211,211,211,0.8);
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.7);
     padding: 30px;
     margin-top: 120px;
   }

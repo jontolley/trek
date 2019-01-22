@@ -6,8 +6,11 @@ import { RouterModule } from '@angular/router';
 
 import {
   ErrorMessageComponent,
-  LoadingComponent
+  LoadingComponent,
+  BtnGroupComponent
 } from '@app/shared/components';
+import { PhoneMaskDirective } from './directives/phone-mask.directive';
+import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 
 @NgModule({
   imports: [
@@ -19,7 +22,10 @@ import {
   ],
   declarations: [
     ErrorMessageComponent,
-    LoadingComponent
+    LoadingComponent,
+    BtnGroupComponent,
+    PhoneMaskDirective,
+    PhoneNumberPipe
   ],
   exports: [
     RouterModule,
@@ -27,7 +33,10 @@ import {
     ReactiveFormsModule,
     HttpClientModule,
     ErrorMessageComponent,
-    LoadingComponent
+    LoadingComponent,
+    BtnGroupComponent,
+    PhoneMaskDirective,
+    PhoneNumberPipe
   ]
 })
 export class SharedModule {}

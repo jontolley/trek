@@ -1,77 +1,165 @@
-<div *ngIf="!name; else forminfo">
-  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
-    <div class="form-container">
-      <div class="row columns">
-        <h1>My Reactive Form</h1>
-
-        <label for="isAdult">Is an adult
-          <input type="checkbox" name="isAdult" formControlName="isAdult" value="1"> Yes
-        </label>
-
-        <label for="ward">Select your ward</label>
-        <select id="ward" formControlName="ward">
-            <option *ngFor="let c of wards" [ngValue]="c">{{ c }}</option>
-        </select>
-
-        <label>Name
-          <input type="text" formControlName="name">
-        </label>
-        <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">{{ titleAlert }}</div>
-
-        <label>Please select your gender</label>
-        <label>Male
-            <input name="gender" formControlName="gender" type="radio" value="male">
-        </label>
-        <label>Female
-            <input name="gender" formControlName="gender" type="radio" value="female">
-        </label>
-
-        <label>Date of birth
-          <input type="date" formControlName="dob" />
-        </label>
-        <div class="alert" *ngIf="!rForm.controls['dob'].valid && rForm.controls['dob'].touched">Date of birth is required.</div>
-
-        <label>Height</label>
-        <label>Feet</label>
-        <select id="feet" formControlName="feet">
-            <option *ngFor="let c of heightFeet" [ngValue]="c">{{ c }}</option>
-        </select>
-
-        <label>Inches</label>
-        <select id="inches" formControlName="inches">
-            <option *ngFor="let c of heightInches" [ngValue]="c">{{ c }}</option>
-        </select>
-
-        <label for="peanutAllergy">
-          <input type="checkbox" name="peanutAllergy" formControlName="peanutAllergy" value="1"> Peanut Allergy
-        </label>
-
-        <label for="glutenAllergy">
-          <input type="checkbox" name="glutenAllergy" formControlName="glutenAllergy" value="1"> Peanut Allergy
-        </label>
-
-        <label>Emergency Contact Name
-          <input type="text" formControlName="emergencyContactName">
-        </label>
-        <div class="alert" *ngIf="!rForm.controls['emergencyContactName'].valid && rForm.controls['emergencyContactName'].touched">{{ titleAlert }}</div>
-
-        <label>emergencyContact Email
-          <input type="text" formControlName="emergencyContactEmail">
-        </label>
-        <div class="alert" *ngIf="!rForm.controls['emergencyContactEmail'].valid && rForm.controls['emergencyContactEmail'].touched">{{ titleAlert }}</div>
-
-        <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
-      </div>
-    </div>
-  </form>
-</div>
-
-<ng-template #forminfo>
-  <div class="form-container">
-    <div class="row columns">
-        <h1>{{ name }}</h1>
-
-        <p>{{ description }}</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 page-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-header-title">Registration</div>
+          </div>
+        </div>
+      </div>      
     </div>
   </div>
-</ng-template>
+</div>
+<div class="container">
+  <div *ngIf="!submitted; else forminfo">
+    <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)"> 
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group" [class.form-error]="isAdult.invalid && (isAdult.dirty || submitFailed)">
+            <label for="isAdult" class="btn-group-label">Type</label>
+            <label [class.error-message]="isAdult.errors?.required" class="required">required</label>
+            <div>
+              <trek-btn-group id="isAdult" name="isAdult" [options]="registrationTypes" formControlName="isAdult"></trek-btn-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row" [class.form-error]="ward.invalid && (ward.dirty || submitFailed)">
+        <div class="col-md-4">
+          <label for="ward">Ward</label>
+          <label [class.error-message]="ward.errors?.required" class="required">required</label>
+          <select id="ward" formControlName="ward" class="form-control">
+            <option [ngValue]="null">Select your ward...</option>
+            <option *ngFor="let c of wards" [ngValue]="c">{{ c }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 form-row">
+          <div class="col-md-6 form-group" [class.form-error]="nameFirst.invalid && (nameFirst.dirty || submitFailed)">
+            <label for="nameFirst">First Name</label>
+            <label [class.error-message]="nameFirst.errors?.required" class="required">required</label>
+            <input type="text" id="nameFirst" formControlName="nameFirst" class="form-control">
+          </div>
+
+          <div class="col-md-6 form-group" [class.form-error]="nameLast.invalid && (nameLast.dirty || submitFailed)">
+            <label for="nameLast">Last Name</label>
+            <label [class.error-message]="nameLast.errors?.required" class="required">required</label>
+            <input type="text" id="nameLast" formControlName="nameLast" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group" [class.form-error]="gender.invalid && (gender.dirty || submitFailed)">
+            <label for="gender" class="btn-group-label">Gender</label>
+            <label [class.error-message]="gender.errors?.required" class="required">required</label>
+            <div>
+              <trek-btn-group id="gender" name="gender" [options]="genderTypes" formControlName="gender"></trek-btn-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="btn-group-label">Allergies</label>
+            <div class="trek-form-check">
+              <input id="peanutAllergy" type="checkbox" name="peanutAllergy" formControlName="peanutAllergy" value="1" class="form-check-input">                    
+              <label for="peanutAllergy" class="form-check-label" [class.selected]="peanutAllergy.value">
+                <i class="fa fa-square-o unchecked-icon"></i>
+                <i class="fa fa-check-square-o checked-icon"></i> Peanut Allergy</label>
+            </div>
+    
+            <div class="trek-form-check mt-2">
+              <input id="glutenAllergy" type="checkbox" name="glutenAllergy" formControlName="glutenAllergy" value="1" class="form-check-input">
+              <label for="glutenAllergy" class="form-check-label" [class.selected]="glutenAllergy.value">
+                <i class="fa fa-square-o unchecked-icon"></i>
+                <i class="fa fa-check-square-o checked-icon"></i> Gluten Allergy</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!thisIsAnAdult">
+        <div class="form-group row" [class.form-error]="dob.invalid && (dob.dirty || submitFailed)">
+          <div class="col-md-6">
+            <label for="dob">Date of birth</label>
+            <label [class.error-message]="dob.errors?.required" class="required">required</label>
+            <input type="date" id="dob" formControlName="dob" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row" [class.form-error]="parentName.invalid && (parentName.dirty || submitFailed)">
+          <div class="col-md-6">
+            <label class="form-label">Parent Name</label>
+            <label [class.error-message]="parentName.errors?.required" class="required">required</label>
+            <input type="text" formControlName="parentName" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group row" [class.form-error]="parentEmail.invalid && (parentEmail.dirty || submitFailed)">
+          <div class="col-md-6">
+            <label class="form-label">Parent Email</label>
+            <input type="email" formControlName="parentEmail" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group row" [class.form-error]="parentPhone.invalid && (parentPhone.dirty || submitFailed)">
+          <div class="col-md-6">
+            <label class="form-label">Parent Phone</label>
+            <label [class.error-message]="parentPhone.errors?.required" class="required">required</label>
+            <input type="text" formControlName="parentPhone" class="form-control" trekPhoneMask>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row" [class.form-error]="emergencyContactName.invalid && (emergencyContactName.dirty || submitFailed)">
+        <div class="col-md-6">
+          <label class="form-label">Emergency Contact Name</label>
+          <label [class.error-message]="emergencyContactName.errors?.required" class="required">required</label>
+          <input type="text" formControlName="emergencyContactName" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group row" [class.form-error]="emergencyContactPhone.invalid && (emergencyContactPhone.dirty || submitFailed)">
+        <div class="col-md-6">
+          <label class="form-label">Emergency Contact Phone</label>
+          <label [class.error-message]="emergencyContactPhone.errors?.required" class="required">required</label>
+          <input type="text" formControlName="emergencyContactPhone" class="form-control" maxlength="14" [value]="emergencyContactPhone.value | phoneNumber">
+          <span *ngIf="emergencyContactPhone.errors?.minlength" class="error-message">Please enter a valid phone number.</span>
+        </div>
+      </div>
+      
+      <pre>{{emergencyContactPhone.value | json}}</pre>
+      <pre>{{emergencyContactPhone.dirty | json}}</pre>
+      <pre>{{emergencyContactPhone.invalid | json}}</pre>
+      <pre>{{emergencyContactPhone.errors | json }}</pre>
+
+      <div class="my-3">
+          <button type="submit" class="btn btn-success" [hidden]="submiting">Submit</button>
+          <button type="button" class="btn btn-success sending-btn" [hidden]="!submiting" disabled><img class="sending-icon" src="assets\ripple.svg"> Registering...</button>
+          <button type="reset" class="btn btn-primary ml-3" [disabled]="submiting" (click)="reset()">Reset</button>
+        </div>
+      
+    </form>
+  </div>
+
+  <ng-template #forminfo>
+    <div class="container registration-display">
+      <div class="row columns">
+          <h1>{{ name }}</h1>
+      </div>
+      
+      <div class="my-3">
+        <button type="reset" class="btn btn-primary" (click)="reset()">Register Another</button>
+      </div>
+    </div>
+  </ng-template>
+</div>
