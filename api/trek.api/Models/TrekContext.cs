@@ -12,6 +12,7 @@ namespace trek.api.Models
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<PackingItem> PackingItems { get; set; }
+        public DbSet<Attendee> Attendees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -10,10 +10,12 @@ namespace trek.api.Services
 
         IEnumerable<PackingItem> GetPackingItems();
 
-        IEnumerable<Contact> GetContacts();
-
-        Contact GetContacts(int id);
+        Contact GetContact(int id);
 
         Task<Contact> AddContacts(Contact contact);
+
+        Attendee GetRegistration(int id);
+
+        Task<Attendee> AddRegistration(Attendee attendee);
     }
 }

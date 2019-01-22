@@ -20,12 +20,6 @@ namespace trek.api.Controllers
             _emailService = emailService;
         }
 
-        [HttpGet]
-        public IEnumerable<Contact> GetContacts()
-        {
-            return _trekDataRepository.GetContacts();
-        }
-
         [HttpGet("{id}")]
         public IActionResult GetContact([FromRoute] int id)
         {
@@ -34,7 +28,7 @@ namespace trek.api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var contact = _trekDataRepository.GetContacts(id);
+            var contact = _trekDataRepository.GetContact(id);
 
             if (contact == null)
             {

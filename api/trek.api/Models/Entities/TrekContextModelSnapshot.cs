@@ -19,6 +19,56 @@ namespace trek.api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("trek.api.Models.Entities.Attendee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("EmergencyName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("EmergencyPhone")
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<bool>("IsAdult");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ParentEmail")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ParentName")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ParentPhone")
+                        .HasMaxLength(15);
+
+                    b.Property<DateTime>("RegisteredDateTime");
+
+                    b.Property<string>("Ward")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Attendees");
+                });
+
             modelBuilder.Entity("trek.api.Models.Entities.Contact", b =>
                 {
                     b.Property<int>("Id")

@@ -26,14 +26,9 @@ namespace trek.api.Services
             return _context.PackingItems.OrderBy(p => p.SortOrder);
         }
 
-        public Contact GetContacts(int id)
+        public Contact GetContact(int id)
         {
             return _context.Contacts.FirstOrDefault(c => c.Id == id);
-        }
-
-        public IEnumerable<Contact> GetContacts()
-        {
-            return _context.Contacts.OrderBy(c => c.ReceivedDateTime);
         }
 
         public async Task<Contact> AddContacts(Contact contact)
@@ -44,6 +39,21 @@ namespace trek.api.Services
             await _context.SaveChangesAsync();
 
             return newContact.Entity;
+        }
+
+        public Attendee GetRegistration(int id)
+        {
+            return _context.Attendees.FirstOrDefault(c => c.Id == id);
+        }
+
+        public async Task<Attendee> AddRegistration(Attendee attendee)
+        {
+            attendee.RegisteredDateTime = DateTime.Now;
+
+            var newAttendee = await _context.Attendees.AddAsync(attendee);
+            await _context.SaveChangesAsync();
+
+            return newAttendee.Entity;
         }
     }
 }
