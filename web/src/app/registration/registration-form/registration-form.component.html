@@ -12,8 +12,20 @@
   </div>
 </div>
 <div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p class="page-info">
+          Thank you for registering for the 2019 Trek of the Spokane East Stake.
+          All youth and adults going on the trek must register using this online form.
+          The deadline for registration is February 28th, 2019.
+          In addition to the online registration all youth must complete permission and medical release form used by the church.
+          An interactive version of this form can be accessed here, <a href="/assets/permision_interactive.pdf" target="_blank">Permission and Medical Release Form.</a>
+          Please complete this form and give it to your ward's Young Men or Young Women President.
+      </p>
+    </div>
+  </div>
   <div *ngIf="!submitted; else forminfo">
-    <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)"> 
+    <form [formGroup]="rForm" (ngSubmit)="onSubmit(rForm.value)"> 
 
       <div class="row">
         <div class="col-md-3">
@@ -92,7 +104,8 @@
           <div class="col-md-6">
             <label for="dob">Date of birth</label>
             <label [class.error-message]="dob.errors?.required" class="required">required</label>
-            <input type="date" id="dob" formControlName="dob" class="form-control" />
+            <input type="text" id="dob" formControlName="dob" class="form-control" [textMask]="{mask: dateMask}" />
+            <span *ngIf="dob.errors?.invalidDate && !dob.errors?.required" class="error-message">Invalid Date, please use 2 digit month and day (mm/dd/yyyy)</span>
           </div>
         </div>
 
@@ -107,7 +120,8 @@
         <div class="form-group row" [class.form-error]="parentEmail.invalid && (parentEmail.dirty || submitFailed)">
           <div class="col-md-6">
             <label class="form-label">Parent Email</label>
-            <input type="email" formControlName="parentEmail" class="form-control">
+            <input type="text" formControlName="parentEmail" class="form-control">
+            <span *ngIf="parentEmail.errors?.email" class="error-message">Invalid email</span>
           </div>
         </div>
 
@@ -115,7 +129,8 @@
           <div class="col-md-6">
             <label class="form-label">Parent Phone</label>
             <label [class.error-message]="parentPhone.errors?.required" class="required">required</label>
-            <input type="text" formControlName="parentPhone" class="form-control" trekPhoneMask>
+            <input type="text" formControlName="parentPhone" class="form-control" [textMask]="{mask: phoneMask}">
+            <span *ngIf="parentPhone.errors?.invalidNumber && !parentPhone.errors?.required" class="error-message">Invalid Phone Number</span>
           </div>
         </div>
       </div>
@@ -132,15 +147,10 @@
         <div class="col-md-6">
           <label class="form-label">Emergency Contact Phone</label>
           <label [class.error-message]="emergencyContactPhone.errors?.required" class="required">required</label>
-          <input type="text" formControlName="emergencyContactPhone" class="form-control" maxlength="14" [value]="emergencyContactPhone.value | phoneNumber">
-          <span *ngIf="emergencyContactPhone.errors?.minlength" class="error-message">Please enter a valid phone number.</span>
+          <input type="text" formControlName="emergencyContactPhone" class="form-control" [textMask]="{mask: phoneMask}">
+          <span *ngIf="emergencyContactPhone.errors?.invalidNumber && !emergencyContactPhone.errors?.required" class="error-message">Invalid Phone Number</span>
         </div>
       </div>
-      
-      <pre>{{emergencyContactPhone.value | json}}</pre>
-      <pre>{{emergencyContactPhone.dirty | json}}</pre>
-      <pre>{{emergencyContactPhone.invalid | json}}</pre>
-      <pre>{{emergencyContactPhone.errors | json }}</pre>
 
       <div class="my-3">
           <button type="submit" class="btn btn-success" [hidden]="submiting">Submit</button>
@@ -152,13 +162,14 @@
   </div>
 
   <ng-template #forminfo>
-    <div class="container registration-display">
-      <div class="row columns">
-          <h1>{{ name }}</h1>
+    <div class="row">
+      <div class="col-12">
+        <h1>Registration Complete</h1>
       </div>
+      <div class="col-12">Thank you for registering {{ nameFirst.value }} {{ nameLast.value }} from the {{ ward.value }} ward.</div>
       
-      <div class="my-3">
-        <button type="reset" class="btn btn-primary" (click)="reset()">Register Another</button>
+      <div class="col-12 my-3">
+        <button type="reset" class="btn btn-primary" (click)="reset()">Register Another Person</button>
       </div>
     </div>
   </ng-template>

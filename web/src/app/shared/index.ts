@@ -4,3 +4,5 @@ export * from './models/error';
 export * from './models/contact';
 export * from './models/faq';
 export * from './models/packingItem';
+export * from './models/attendee';
+export * from './validation';

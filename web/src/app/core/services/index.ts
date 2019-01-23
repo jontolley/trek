@@ -3,5 +3,6 @@ export * from './error.service';
 export * from './background.service';
 export * from './routing.service';
 export * from './contact.service';
+export * from './registration.service';
 export * from './packing.resolver';
 export * from './faq.resolver';

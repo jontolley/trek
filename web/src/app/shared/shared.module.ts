@@ -9,8 +9,6 @@ import {
   LoadingComponent,
   BtnGroupComponent
 } from '@app/shared/components';
-import { PhoneMaskDirective } from './directives/phone-mask.directive';
-import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 
 @NgModule({
   imports: [
@@ -23,9 +21,7 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
   declarations: [
     ErrorMessageComponent,
     LoadingComponent,
-    BtnGroupComponent,
-    PhoneMaskDirective,
-    PhoneNumberPipe
+    BtnGroupComponent
   ],
   exports: [
     RouterModule,
@@ -34,9 +30,7 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
     HttpClientModule,
     ErrorMessageComponent,
     LoadingComponent,
-    BtnGroupComponent,
-    PhoneMaskDirective,
-    PhoneNumberPipe
+    BtnGroupComponent
   ]
 })
 export class SharedModule {}

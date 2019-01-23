@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
+
 import { BtnGroupOptions } from '../../shared/components/btn-group/btn-group-option';
+import { CustomValidator, TrekAttendee } from '@app/shared';
+import { RegistrationService } from '@app/core';
 
 @Component({
   selector: 'trek-registration-form',
@@ -15,15 +19,16 @@ export class RegistrationFormComponent implements OnInit {
   submiting = false;
   submitted = false;
   submitFailed = false;
-  post: any;
-  name = '';
 
   registrationTypes: BtnGroupOptions;
   genderTypes: BtnGroupOptions;
 
+  phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  dateMask = [/[0-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+
   wards = ['Belle Terre', 'Bowdish', 'Dishman Mica', 'Evergeen', 'Painted Hills', 'Pines', 'Ponderosa', '4th Branch', 'Terrace View'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private registrationService: RegistrationService) {
     this.registrationTypes = { multiselect: false, options: [] };
     this.registrationTypes.options.push({label: 'Youth', value: false});
     this.registrationTypes.options.push({label: 'Adult', value: true});
@@ -40,12 +45,12 @@ export class RegistrationFormComponent implements OnInit {
       'ward': ['', Validators.required],
       'peanutAllergy': [false, Validators.required],
       'glutenAllergy': [false, Validators.required],
-      'dob': [null, Validators.required],
+      'dob': [null, { validators: [Validators.required, CustomValidator.dateValidator], updateOn: 'blur' }],
       'parentName': [null, Validators.required],
-      'parentPhone': [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
-      'parentEmail': [null, Validators.email],
+      'parentPhone': [null, { validators: [Validators.required, CustomValidator.phoneValidator], updateOn: 'blur' }],
+      'parentEmail': [null, { validators: [Validators.email], updateOn: 'blur' }],
       'emergencyContactName': [null, Validators.required],
-      'emergencyContactPhone': [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]]
+      'emergencyContactPhone': [null, { validators: [Validators.required, CustomValidator.phoneValidator], updateOn: 'blur' }]
     });
   }
 
@@ -81,13 +86,12 @@ export class RegistrationFormComponent implements OnInit {
           this.parentEmail.setValue(null);
           this.parentPhone.setValue('');
 
-          
           this.parentPhone.reset();
 
         } else {
-          this.dob.setValidators([Validators.required]);   
+          this.dob.setValidators([Validators.required, CustomValidator.dateValidator]);   
           this.parentName.setValidators([Validators.required]);   
-          this.parentPhone.setValidators([Validators.required, Validators.minLength(14), Validators.maxLength(14)]);              
+          this.parentPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);              
         }
 
         this.dob.updateValueAndValidity();
@@ -96,17 +100,44 @@ export class RegistrationFormComponent implements OnInit {
       });
   }
 
-  addPost() {
+  onSubmit() {
     if (this.rForm.invalid) {
       this.submitFailed = true;
-      console.log('invalid', this.rForm.value);
       return;
     }
 
-    console.log('is valid', this.rForm.value);
     this.submiting = true;
-    this.submitted = true;
-    this.name = `${this.nameFirst.value} ${this.nameLast.value}`;
+
+    let tempAttendee = {
+      'isAdult': this.isAdult.value,
+      'firstName': this.nameFirst.value,
+      'lastName': this.nameLast.value,
+      'ward': this.ward.value,
+      'gender': this.gender.value,
+      'peanutAllergy': this.peanutAllergy.value,
+      'glutenAllergy': this.glutenAllergy.value,
+      'dateOfBirth': this.dob.value ? moment(this.dob.value).toDate() : null,
+      'parentName': this.parentName.value,
+      'parentEmail': this.parentEmail.value,
+      'parentPhone': this.parentPhone.value,
+      'emergencyName': this.emergencyContactName.value,
+      'emergencyPhone': this.emergencyContactPhone.value
+    }
+    let attendee = new TrekAttendee(tempAttendee);
+
+    this.registrationService.sendRegistration(attendee)
+    .subscribe(
+      data => { },
+      error => {
+        this.submiting = false;
+        this.errorMessage = error;
+        console.log(error);
+      },
+      () => {
+        this.submitted = true;
+        this.submiting = false;
+      }
+    );
   }
   
   initializeVariables() {

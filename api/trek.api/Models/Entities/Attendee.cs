@@ -27,7 +27,11 @@ namespace trek.api.Models.Entities
         [MaxLength(10)]
         public string Gender { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public bool PeanutAllergy { get; set; }
+
+        public bool GlutenAllergy { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
 
         [MaxLength(100)]
         public string ParentName { get; set; }
