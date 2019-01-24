@@ -197,11 +197,11 @@
       </div>
       
       <div *ngIf="!savedAttendee.isAdult" class="col-md-4 mt-3 attendee-data-label">Date of birth</div>
-      <div class="col-md-8 mt-1 mt-md-3 attendee-data-value">{{ savedAttendee.dateOfBirth | date }}</div>
+      <div *ngIf="!savedAttendee.isAdult" class="col-md-8 mt-1 mt-md-3 attendee-data-value">{{ savedAttendee.dateOfBirth | date }}</div>
       
       <div *ngIf="!savedAttendee.isAdult" class="col-md-4 mt-3 attendee-data-label">Parent Name</div>
-      <div class="col-md-8 mt-1 mt-md-3 attendee-data-value">{{ savedAttendee.parentName }}</div>
-      
+      <div *ngIf="!savedAttendee.isAdult" class="col-md-8 mt-1 mt-md-3 attendee-data-value">{{ savedAttendee.parentName }}</div>
+
       <div *ngIf="!savedAttendee.isAdult" class="col-md-4 mt-3 attendee-data-label">Parent Email</div>
       <div *ngIf="savedAttendee.isAdult" class="col-md-4 mt-3 attendee-data-label">Email</div>
       <div class="col-md-8 mt-1 mt-md-3 attendee-data-value">{{ savedAttendee.parentEmail }}</div>
