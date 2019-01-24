@@ -36,7 +36,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
-          return;
+        return;
+      }
+      if (evt.url.startsWith('/faq') && evt.url.length > 4) {
+        return;
       }
       window.scrollTo(0, 0)
   });

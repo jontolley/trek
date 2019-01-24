@@ -34,7 +34,9 @@
   <div class="row">
     <div class="col-12">
       <p class="page-info">
-        Each trekker is allowed to put up to 15 lbs. of personal items in their bucket which will be placed in the handcart. Everything listed below needs to fit inside your 5 gallon bucket.  Pack carefully!
+        Each trekker is allowed to put up to 15 lbs. of personal items in their bucket which
+        will be placed in the handcart. Everything listed below needs to fit inside your 5
+        gallon bucket or be carried by you.  Pack carefully!
       </p>
     </div>
   </div>
@@ -42,28 +44,28 @@
     <div class="col-12">
       <h4>Bucket Items</h4>
       <ul>
-        <li *ngFor="let item of generalItems">{{item.name}}</li>
+        <li *ngFor="let item of generalItems">{{item.name}} <span *ngIf="!item.isRequired" class="optional">(optional)</span></li>
       </ul>
     </div>
     
     <div class="col-12 col-md-6">
       <h4>Boys Items</h4>
       <ul>
-        <li *ngFor="let item of boysItems">{{item.name}}</li>
+        <li *ngFor="let item of boysItems">{{item.name}} <span *ngIf="!item.isRequired" class="optional">(optional)</span></li>
       </ul>
     </div>
     
     <div class="col-12 col-md-6">
       <h4>Girls Items</h4>
       <ul>
-        <li *ngFor="let item of girlsItems">{{item.name}}</li>
+        <li *ngFor="let item of girlsItems">{{item.name}} <span *ngIf="!item.isRequired" class="optional">(optional)</span></li>
       </ul>
     </div>
       
     <div class="col-12">
         <h4>Prohibited Items</h4>
         <ul>
-          <li *ngFor="let item of prohibitedItems">{{item.name}}</li>
+          <li *ngFor="let item of prohibitedItems">{{item.name}} <span *ngIf="!item.isRequired" class="optional">(optional)</span></li>
         </ul>
       </div>
   </div>
