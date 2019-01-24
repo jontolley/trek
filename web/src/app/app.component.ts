@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { routerTransition, ErrorService, BackgroundService, RoutingService } from '@app/core';
 import { TrekError } from '@app/shared';
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
   public constructor(
     private errorService: ErrorService,
     private routing: RoutingService,
+    private router: Router,
     private backgroundService: BackgroundService) {
       this.routing.navCollapse.subscribe((value) => this.isCollapsed = value);
     }
@@ -32,6 +34,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0)
+  });
     this.errorService.cast.subscribe(error => (this.errorObj = error));
   }
 

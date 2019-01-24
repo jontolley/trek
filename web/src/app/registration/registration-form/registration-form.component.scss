@@ -33,9 +33,7 @@
     font-style: italic;
     margin-bottom: 30px;
   }
-}
 
-.container {
   .sending-btn {
 
     .sending-icon {
@@ -43,8 +41,29 @@
     }
   }  
 
-  button {
+  button, a.btn {
     border-radius: 0;
+  }
+
+  .display-saved-attendee {
+    h1 {
+      color: $trek-blue;
+    }
+
+    .attendee-message {
+      font-size: 1.3em;
+    }
+
+    .attendee-data-label {
+      color: $trek-blue;
+      font-size: 1.5em;
+      line-height: 1em;
+    }
+
+    .attendee-data-value {
+      font-size: 1.7em;
+      line-height: 1em;
+    }
   }
 }
 
@@ -123,7 +142,7 @@ form {
         border: 1px solid #e92424;
       }
 
-      /deep/ .btn-group {
+      /deep/ .btn-grp-blue {
         border: 1px solid #e92424;
       }
     }

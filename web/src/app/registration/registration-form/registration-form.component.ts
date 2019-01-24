@@ -20,6 +20,8 @@ export class RegistrationFormComponent implements OnInit {
   submitted = false;
   submitFailed = false;
 
+  savedAttendee: TrekAttendee;
+
   registrationTypes: BtnGroupOptions;
   genderTypes: BtnGroupOptions;
 
@@ -74,12 +76,16 @@ export class RegistrationFormComponent implements OnInit {
 
   ngOnInit() {
     this.initializeVariables();
+
     this.rForm.get('isAdult').valueChanges.subscribe(
       (isAdult) => {
         if (this.thisIsAnAdult) {
-          this.dob.setValidators(null);
+          this.dob.setValidators([CustomValidator.dateValidator]);
           this.parentName.setValidators(null);
-          this.parentPhone.setValidators(null);
+          this.parentPhone.setValidators([CustomValidator.phoneValidator]);
+
+          this.emergencyContactName.setValidators([Validators.required]);
+          this.emergencyContactPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);
           
           this.dob.setValue(null);
           this.parentName.setValue(null);
@@ -91,12 +97,22 @@ export class RegistrationFormComponent implements OnInit {
         } else {
           this.dob.setValidators([Validators.required, CustomValidator.dateValidator]);   
           this.parentName.setValidators([Validators.required]);   
-          this.parentPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);              
+          this.parentPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);
+          
+          this.emergencyContactName.setValidators(null);
+          this.emergencyContactPhone.setValidators([CustomValidator.phoneValidator]);
+
+          this.emergencyContactName.setValue(null);
+          this.emergencyContactPhone.setValue('');
+
+          this.emergencyContactPhone.reset();
         }
 
         this.dob.updateValueAndValidity();
         this.parentName.updateValueAndValidity();
         this.parentPhone.updateValueAndValidity();
+        this.emergencyContactName.updateValueAndValidity();
+        this.emergencyContactPhone.updateValueAndValidity();
       });
   }
 
@@ -116,18 +132,20 @@ export class RegistrationFormComponent implements OnInit {
       'gender': this.gender.value,
       'peanutAllergy': this.peanutAllergy.value,
       'glutenAllergy': this.glutenAllergy.value,
-      'dateOfBirth': this.dob.value ? moment(this.dob.value).toDate() : null,
+      'dateOfBirth': this.dob.value ? moment(this.dob.value, 'MM/DD/YYYY').toDate() : null,
       'parentName': this.parentName.value,
       'parentEmail': this.parentEmail.value,
       'parentPhone': this.parentPhone.value,
-      'emergencyName': this.emergencyContactName.value,
-      'emergencyPhone': this.emergencyContactPhone.value
+      'emergencyName': this.thisIsAnAdult ? this.emergencyContactName.value : this.parentName.value,
+      'emergencyPhone': this.thisIsAnAdult ? this.emergencyContactPhone.value : this.parentPhone.value
     }
     let attendee = new TrekAttendee(tempAttendee);
 
     this.registrationService.sendRegistration(attendee)
     .subscribe(
-      data => { },
+      data => {
+        this.savedAttendee = data;
+      },
       error => {
         this.submiting = false;
         this.errorMessage = error;
