@@ -77,43 +77,7 @@ export class RegistrationFormComponent implements OnInit {
   ngOnInit() {
     this.initializeVariables();
 
-    this.rForm.get('isAdult').valueChanges.subscribe(
-      (isAdult) => {
-        if (this.thisIsAnAdult) {
-          this.dob.setValidators([CustomValidator.dateValidator]);
-          this.parentName.setValidators(null);
-          this.parentPhone.setValidators([CustomValidator.phoneValidator]);
-
-          this.emergencyContactName.setValidators([Validators.required]);
-          this.emergencyContactPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);
-          
-          this.dob.setValue(null);
-          this.parentName.setValue(null);
-          this.parentEmail.setValue(null);
-          this.parentPhone.setValue('');
-
-          this.parentPhone.reset();
-
-        } else {
-          this.dob.setValidators([Validators.required, CustomValidator.dateValidator]);   
-          this.parentName.setValidators([Validators.required]);   
-          this.parentPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);
-          
-          this.emergencyContactName.setValidators(null);
-          this.emergencyContactPhone.setValidators([CustomValidator.phoneValidator]);
-
-          this.emergencyContactName.setValue(null);
-          this.emergencyContactPhone.setValue('');
-
-          this.emergencyContactPhone.reset();
-        }
-
-        this.dob.updateValueAndValidity();
-        this.parentName.updateValueAndValidity();
-        this.parentPhone.updateValueAndValidity();
-        this.emergencyContactName.updateValueAndValidity();
-        this.emergencyContactPhone.updateValueAndValidity();
-      });
+    this.rForm.get('isAdult').valueChanges.subscribe(isAdult => this.setFormValidation(isAdult));
   }
 
   onSubmit() {
@@ -157,6 +121,46 @@ export class RegistrationFormComponent implements OnInit {
         this.submiting = false;
       }
     );
+  }
+
+  setFormValidation(isAdult: boolean) {
+    console.log('isAdult',isAdult);
+    console.log('thisIsAnAdult',this.thisIsAnAdult);
+
+    if (isAdult) {
+      this.dob.setValidators([CustomValidator.dateValidator]);
+      this.parentName.setValidators(null);
+      this.parentPhone.setValidators([CustomValidator.phoneValidator]);
+
+      this.emergencyContactName.setValidators([Validators.required]);
+      this.emergencyContactPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);
+      
+      this.dob.setValue(null);
+      this.parentName.setValue(null);
+      this.parentEmail.setValue(null);
+      this.parentPhone.setValue('');
+
+      this.parentPhone.reset();
+
+    } else {
+      this.dob.setValidators([Validators.required, CustomValidator.dateValidator]);   
+      this.parentName.setValidators([Validators.required]);   
+      this.parentPhone.setValidators([Validators.required, CustomValidator.phoneValidator]);
+      
+      this.emergencyContactName.setValidators(null);
+      this.emergencyContactPhone.setValidators([CustomValidator.phoneValidator]);
+
+      this.emergencyContactName.setValue(null);
+      this.emergencyContactPhone.setValue('');
+
+      this.emergencyContactPhone.reset();
+    }
+
+    this.dob.updateValueAndValidity();
+    this.parentName.updateValueAndValidity();
+    this.parentPhone.updateValueAndValidity();
+    this.emergencyContactName.updateValueAndValidity();
+    this.emergencyContactPhone.updateValueAndValidity();      
   }
   
   initializeVariables() {
