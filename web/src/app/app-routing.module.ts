@@ -8,6 +8,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { PackingComponent } from './pages/packing/packing.component';
 import { PackingResolver, FaqResolver } from '@app/core';
+import { InformationComponent } from './pages/information/information.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'cothing',
     component: ClothingComponent,
     data: { title: 'Pioneer Clothing', state: 'clothing' }
+  },
+  {
+    path: 'music',
+    component: InformationComponent,
+    data: { title: 'Music', state: 'music' }
   },
   {
     path: 'faq',
