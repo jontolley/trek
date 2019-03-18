@@ -28,7 +28,7 @@ export class RegistrationFormComponent implements OnInit {
   phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   dateMask = [/[0-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
-  wards = ['Belle Terre', 'Bowdish', 'Dishman Mica', 'Evergeen', 'Painted Hills', 'Pines', 'Ponderosa', '4th Branch', 'Terrace View'];
+  wards = ['Adams', 'Autumn Crest', 'Bella Vista', 'Chester Creek', 'Dishman Hills', 'Feeman', 'Horizon Hills', 'Opportunity', 'Sunrise', 'Terrace View', '4th Branch'];
 
   constructor(private fb: FormBuilder, private registrationService: RegistrationService) {
     this.registrationTypes = { multiselect: false, options: [] };
