@@ -31,24 +31,4 @@ export class DataService {
         catchError(this.errorService.handleHttpError)
       );
   }
-
-  public sendContactRequest(contact: TrekContact) : Observable<TrekContact> {
-    const uri = `${this.baseUrl}/api/contacts`;
-    
-    return this.httpClient
-      .post<TrekContact>(uri, contact)
-      .pipe(
-        catchError(this.errorService.handleHttpError)
-      );
-  }
-
-  public sendRegistration(attendee: TrekAttendee) : Observable<TrekAttendee> {
-    const uri = `${this.baseUrl}/api/registration`;
-    
-    return this.httpClient
-      .post<TrekAttendee>(uri, attendee)
-      .pipe(
-        catchError(this.errorService.handleHttpError)
-      );
-  }
 }

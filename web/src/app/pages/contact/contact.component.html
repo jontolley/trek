@@ -16,51 +16,14 @@
   <div class="row">
     <div class="col-12">
       <p class="page-info">
-        Use this form to contact the Trek Committee.
+        These are the contact phone numbers to be used in case of emergency during Trek.
       </p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-10 contact">
-      <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
-        <div class="form-row">
-          <div class="form-group col-md-6" [class.form-error]="name.invalid && (name.dirty || submitFailed)">
-            <label for="inputName">Name</label>
-            <label [class.error-message]="name.hasError('required')" class="required">required</label>
-            <input type="text" class="form-control" id="inputName" [(ngModel)]="model.name" name="name" #name="ngModel"
-              required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6"
-            [class.form-error]="(email.hasError('required') && (email.dirty || submitFailed)) || (email.hasError('email') && submitFailed)">
-            <label for="inputEmail">Email</label>
-            <label [class.error-message]="email.hasError('required')" class="required">required</label>
-            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="model.email" name="email" #email="ngModel" required email>
-            <div *ngIf="(email.hasError('email') && !email.hasError('required')) && submitFailed" [class.error-message]="email.hasError('email')">
-              <small class="text-uppercase">Please enter a valid email address</small></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6" [class.form-error]="ward.invalid && (ward.dirty || submitFailed)">
-            <label for="inputWard">Ward</label>
-            <input type="text" class="form-control" id="inputWard" [(ngModel)]="model.ward" name="ward" #ward="ngModel">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-12" [class.form-error]="message.invalid && (message.dirty || submitFailed)">
-            <label for="inputMessage">Message</label>
-            <label [class.error-message]="message.hasError('required')" class="required">required</label>
-            <textarea type="text" class="form-control" id="inputMessage" required [(ngModel)]="model.message" name="message" #message="ngModel"
-              rows="3" required></textarea>
-          </div>
-        </div>
-        <div class="my-3">
-          <button type="submit" class="btn btn-success" [hidden]="submiting">Send Message</button>
-          <button type="button" class="btn btn-success" [hidden]="!submiting"><img class="sending-icon" src="assets\ripple.svg"> Sending...</button>
-          <button type="reset" class="btn btn-primary ml-3" [disabled]="contactForm.pristine" (click)="reset()">Reset</button>
-        </div>
-      </form>
+      <p>Sister Sheri Daniels <a href="tel:3609369099">360-936-9099</a></p>
+      <p>Elder Thomas Daniels <a href="tel:3606069917">360-606-9917</a></p>
     </div>
   </div>
 </div>

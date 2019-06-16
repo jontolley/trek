@@ -52,11 +52,6 @@ const routes: Routes = [
     component: ContactComponent,
     data: { title: 'Contact Us', state: 'contact' }
   },
-  {
-    path: 'registration',
-    loadChildren: './registration/registration.module#RegistrationModule',
-    data: { title: 'Registration', state: 'registration' }
-  },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -21,7 +21,6 @@ export class RoutingService {
     { link: 'cothing', label: 'Pioneer Clothing' },
     { link: 'music', label: 'Music' },
     { link: 'faq', label: 'FAQ' },
-    { link: 'registration', label: 'Registration' },
     { link: 'contact', label: 'Contact' }
   ];
 
